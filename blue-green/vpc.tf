@@ -1,3 +1,4 @@
 variable "vpc_id" {
-  default = "yourvpcid"
+  default = "vpc-ecba1e87"
 }
+

@@ -3,14 +3,15 @@ variable "infrastructure_version" {
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-2"
 }
 
 terraform {
   backend "s3" {
     encrypt = true
-    bucket  = "terraform-bluegreen"
-    region  = "us-east-1"
+    bucket  = "storage.panda-terraform-bluegreen"
+    region  = "us-east-2"
     key     = "v1"
   }
 }
+

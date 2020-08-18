@@ -1,9 +1,9 @@
 resource "aws_elb" "terraform-blue-green" {
   name            = "terraform-blue-green-v${var.infrastructure_version}"
-  subnets         = ["${aws_subnet.terraform-blue-green.*.id}"]
-  security_groups = ["${aws_security_group.terraform-blue-green.id}"]
+  subnets         = aws_subnet.terraform-blue-green.*.id
+  security_groups = [aws_security_group.terraform-blue-green.id]
 
-  instances = ["${aws_instance.terraform-blue-green.*.id}"]
+  instances = aws_instance.terraform-blue-green.*.id
 
   listener {
     instance_port     = 80
@@ -20,11 +20,12 @@ resource "aws_elb" "terraform-blue-green" {
     interval            = 30
   }
 
-  tags {
+  tags = {
     Name = "terraform-blue-green-v${var.infrastructure_version}"
   }
 }
 
 output "load_balancer_dns" {
-  value = "${aws_elb.terraform-blue-green.dns_name}"
+  value = aws_elb.terraform-blue-green.dns_name
 }
+
