@@ -1,5 +1,5 @@
 locals {
-  subnets = [aws_subnet.terraform-blue-green.*.id]
+  subnets = aws_subnet.terraform-blue-green.*.id
 
   user_data = <<EOF
     #cloud-config
